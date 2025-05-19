@@ -13,7 +13,11 @@ def new_controller_create_new_entity(body):
             with tracer.start_as_current_span("parse_json_body"):
                 data = connexion.request.get_json()
             with tracer.start_as_current_span("db_insert_entity"):
-                new_entity = New(name=data.get('name'), email=data.get('email'))
+                new_entity = New(
+                    name=data.get('name'),
+                    email=data.get('email')
+                )
+
                 db.session.add(new_entity)
             with tracer.start_as_current_span("db_commit"):
                 db.session.commit()
