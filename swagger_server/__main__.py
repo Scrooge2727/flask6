@@ -1,9 +1,11 @@
 import connexion
 from swagger_server import encoder
 from swagger_server.sqldate import db  # Импортируем объект базы данных
-from prometheus_client import Counter, Summary, Gauge, Histogram, generate_latest
+from prometheus_client import (Counter, Summary,
+                               Gauge, Histogram, generate_latest)
 from swagger_server.logger import logger
-from swagger_server.tracer import configure_tracing  # Импортируем функцию из tracer.py
+from swagger_server.tracer import (
+    configure_tracing)  # Импортируем функцию из tracer.py
 from flask import Response
 import time
 import random
@@ -90,11 +92,13 @@ def main():
     app.app.json_encoder = encoder.JSONEncoder
 
     # Middleware для метрик
-    app.app.before_request(lambda: setattr(connexion.request, 'start_time', time.time()))
+    app.app.before_request(lambda: setattr(connexion.request,
+                                           'start_time', time.time()))
     app.app.after_request(track_metrics)
 
     # Инициализация API из swagger.yaml
-    app.add_api('swagger.yaml', arguments={'title': 'database API'}, pythonic_params=True)
+    app.add_api('swagger.yaml', arguments={'title': 'database API'
+                                           }, pythonic_params=True)
 
     # Конфигурация SQLAlchemy для SQLite
     app.app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
