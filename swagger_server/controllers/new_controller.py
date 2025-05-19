@@ -7,7 +7,7 @@ from swagger_server.tracer import tracer
 
 
 def new_controller_create_new_entity(body):
-    """Создать новый объект"""
+    """Создать новый объект """
     with tracer.start_as_current_span("create_new_entity"):
         if connexion.request.is_json:
             with tracer.start_as_current_span("parse_json_body"):

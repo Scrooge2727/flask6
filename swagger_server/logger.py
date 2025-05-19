@@ -1,7 +1,7 @@
 import logging  # Импортируем модуль для логирования
 from logging_loki import LokiHandler  # Импортируем обработчик Loki
 
-# Настройка логирования
+# Настройка логировани
 logger = logging.getLogger("python-server")
 logger.setLevel(logging.DEBUG)
 

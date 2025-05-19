@@ -65,7 +65,7 @@ class TestStoreController(BaseTestCase):
             content_type='application/json'
         )
         self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+                       'Response body  is : ' + response.data.decode('utf-8'))
 
 
 if __name__ == '__main__':

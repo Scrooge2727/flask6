@@ -13,7 +13,7 @@ class New(db.Model):
 
     @classmethod
     def from_dict(cls, dikt):
-        # Если передан словарь, возвращаем объект Note
+        # Если передан словарь, возвращаем объект  Note
         return cls(
             id=dikt.get('id'),
             name=dikt.get('name'),
