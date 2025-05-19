@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: "database API"
+  description: "An API for managing the database."
+  version: "1.0.0"
+servers:
+  - url: http://127.0.0.1:8090
+paths:
+  /new:
+    get:
+      summary: Get all new entities
+      operationId: new_controller_get_new_entities  # Имя функции в контроллере
+      responses:
+        "200":
+          description: List of new entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewEntity"
+      x-openapi-router-controller: swagger_server.controllers.new_controller
+    post:
+      summary: Create a new entity
+      operationId: new_controller_create_new_entity  # Имя функции в контроллере
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewEntity"
+        required: true
+      responses:
+        "201":
+          description: Created new entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewEntity"
+      x-openapi-router-controller: swagger_server.controllers.new_controller
+  /new/{new_entity_id}:
+    put:
+      summary: Update a new entity by ID
+      operationId: new_controller_update_new_entity  # Имя функции в контроллере
+      parameters:
+        - name: new_entity_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewEntity"
+        required: true
+      responses:
+        "203":
+          description: Updated new entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewEntity"
+        "404":
+          description: New entity not found
+      x-openapi-router-controller: swagger_server.controllers.new_controller
+    delete:
+      summary: Delete a new entity by ID
+      operationId: new_controller_delete_new_entity  # Имя функции в контроллере
+      parameters:
+        - name: new_entity_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: New entity deleted
+        "404":
+          description: New entity not found
+      x-openapi-router-controller: swagger_server.controllers.new_controller
+
+components:
+  schemas:
+    NewEntity:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        email:
+          type: string
+      example:
+        id: 0
+        name: "name"
+        email: "email"
