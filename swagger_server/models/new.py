@@ -1,5 +1,6 @@
 from swagger_server.sqldate import db
 
+
 class New(db.Model):
     __tablename__ = 'database'
     id = db.Column(db.Integer, primary_key=True)
